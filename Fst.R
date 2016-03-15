@@ -3,8 +3,10 @@
 
 install.packages("ape")
 install.packages("mmod")
+install.packages("pegas")
 library(ape)
 library(mmod)
+library(pegas)
 
 # read in data
 dat <- read.dna("data/nucleotide.phy")
@@ -21,4 +23,7 @@ Gst_Nei(dat_genind)
 # calculate differentiation statistics (including Gst)
 diff_stats(dat_genind)
 
-
+# create and plot haplotype network
+hap <- haplotype(dat)
+net <- haploNet(hap)
+plot(net, size = attr(net, "freq"), scale.ratio = 2, cex = 0.2)

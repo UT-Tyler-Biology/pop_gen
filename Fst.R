@@ -1,4 +1,4 @@
-## Population genetics statistics (Fst)
+## Population genetics statistics (Fst) and haplotype network
 ## Thanks to Julia Norrell and Josh Banta for example data and code
 
 install.packages("ape")
@@ -9,7 +9,14 @@ library(mmod)
 library(pegas)
 
 # read in data
-dat <- read.dna("data/nucleotide.phy")
+dat <- read.dna("data/plant.phy")
+
+# show distribution of polymorphism in data
+datMatrix <- as.matrix(dat)
+snpposi.plot(datMatrix, codon=FALSE)
+
+# convert to genind format
+DNAbin2genind(dat)
 
 # add populations (same order as taxa in matrix)
 pops <- c("A", "A", "B", "B", "A", "A", "B", "A", "A", "A", "A", "A", "B", "B", "A", "A", "A", "B", "A", "B", "B", "A", "A", "B")
